@@ -13,9 +13,12 @@ const Home = () => {
     setUnit(newUnit);
     localStorage.setItem("temperatureUnit", newUnit);
 
-    await axios.put(`http://localhost:5000/api/user/${userId}`, {
-      preferredUnit: newUnit,
-    });
+    await axios.put(
+      `https://weatherapp-backend-7t9h.onrender.com/api/user/${userId}`,
+      {
+        preferredUnit: newUnit,
+      }
+    );
   };
 
   useEffect(() => {
@@ -29,7 +32,7 @@ const Home = () => {
     const fetchLocationWeather = async (latitude, longitude) => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/weather/location?lat=${latitude}&lon=${longitude}`
+          `https://weatherapp-backend-7t9h.onrender.com/api/weather/location?lat=${latitude}&lon=${longitude}`
         );
         setWeatherData(response.data);
       } catch (error) {
@@ -55,7 +58,7 @@ const Home = () => {
   const handleSearch = async (city) => {
     try {
       const response = await axios.get(
-        `http://localhost:5000/api/weather/${city}`
+        `https://weatherapp-backend-7t9h.onrender.com/api/weather/${city}`
       );
       setWeatherData(response.data);
       setError("");
